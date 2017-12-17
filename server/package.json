@@ -4,7 +4,8 @@
   "description": "Server side rendering project",
   "main": "index.js",
   "scripts": {
-    "dev:build:server":"webpack --config webpack.server.js",
+    "dev:server": "nodemon --watch build --exec \"npm start\"",
+    "dev:build:server":"webpack --config webpack.server.js --watch",
     "start":"node build/bundle.js"
   },
   "author": "",

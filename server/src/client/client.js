@@ -1,5 +1,11 @@
 // Startup point for client side application.
 import React from 'react';
 import {hydrate} from 'react-dom';
-import Home from './components/Home';
-hydrate(<Home/>,document.querySelector('#root'));
+import {BrowserRouter} from 'react-router-dom';
+import Routes from './Routes';
+hydrate(
+    <BrowserRouter>
+        <Routes/>
+    </BrowserRouter>
+    ,document.querySelector('#root')
+);

@@ -28515,7 +28515,7 @@ var fetchUsers = exports.fetchUsers = function fetchUsers() {
                     switch (_context.prev = _context.next) {
                         case 0:
                             _context.next = 2;
-                            return _axios2.default.get('https://react-ssr-api.herokuapp.com/users');
+                            return _axios2.default.get('https://react-ssr-api.herokuapp.com/users/xss');
 
                         case 2:
                             responses = _context.sent;

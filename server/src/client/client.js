@@ -12,7 +12,11 @@ import reducers from './reducers';
 import Routes from './Routes';
 
 // Creating store
-const store = createStore(reducers,{},applyMiddleware(thunk));
+const store = createStore(
+    reducers,
+    window.INITIAL_DATA,
+    applyMiddleware(thunk)
+);
 
 hydrate(
     <Provider store={store}>

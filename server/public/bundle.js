@@ -4091,7 +4091,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 // Creating store
 // Startup point for client side application.
-var store = (0, _redux.createStore)(_reducers2.default, {}, (0, _redux.applyMiddleware)(_reduxThunk2.default));
+var store = (0, _redux.createStore)(_reducers2.default, window.INITIAL_DATA, (0, _redux.applyMiddleware)(_reduxThunk2.default));
 
 (0, _reactDom.hydrate)(_react2.default.createElement(
     _reactRedux.Provider,
@@ -39012,7 +39012,7 @@ var UserList = function (_Component) {
     _createClass(UserList, [{
         key: 'componentDidMount',
         value: function componentDidMount() {
-            this.props.fetchUsers();
+            // this.props.fetchUsers();
         }
     }, {
         key: 'renderUserList',

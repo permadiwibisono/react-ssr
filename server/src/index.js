@@ -29,6 +29,8 @@ app.get('*',(req,res)=>{
     const render = () => { 
         const context = {};
         const html = renderer(req,store,context);
+        if(context.url)
+            return res.redirect(301,context.url);
         res.status(context.statusCode || 200).send(html);
     }
     Promise.all(promises).then(render);

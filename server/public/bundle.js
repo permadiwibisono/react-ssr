@@ -39013,6 +39013,10 @@ var _NotFoundPage = __webpack_require__(483);
 
 var _NotFoundPage2 = _interopRequireDefault(_NotFoundPage);
 
+var _AdminListPage = __webpack_require__(485);
+
+var _AdminListPage2 = _interopRequireDefault(_AdminListPage);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = [_extends({}, _App2.default, {
@@ -39021,6 +39025,8 @@ exports.default = [_extends({}, _App2.default, {
         exact: true
     }), _extends({}, _UserListPage2.default, {
         path: '/users'
+    }), _extends({}, _AdminListPage2.default, {
+        path: '/admins'
     }), _extends({}, _NotFoundPage2.default)]
 })];
 
@@ -39362,6 +39368,98 @@ exports.default = function () {
             return action.payload.data;
         default:
             return state;
+    }
+};
+
+/***/ }),
+/* 485 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(6);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = __webpack_require__(172);
+
+var _actions = __webpack_require__(181);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var AdminListPage = function (_Component) {
+    _inherits(AdminListPage, _Component);
+
+    function AdminListPage() {
+        _classCallCheck(this, AdminListPage);
+
+        return _possibleConstructorReturn(this, (AdminListPage.__proto__ || Object.getPrototypeOf(AdminListPage)).apply(this, arguments));
+    }
+
+    _createClass(AdminListPage, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            this.props.fetchAdmins();
+        }
+    }, {
+        key: 'renderAdmins',
+        value: function renderAdmins() {
+            return this.props.admins.map(function (admin) {
+                return _react2.default.createElement(
+                    'li',
+                    { key: admin.id },
+                    admin.name
+                );
+            });
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement(
+                    'h3',
+                    null,
+                    'Protected list of admin:'
+                ),
+                _react2.default.createElement(
+                    'ul',
+                    null,
+                    this.renderAdmins()
+                )
+            );
+        }
+    }]);
+
+    return AdminListPage;
+}(_react.Component);
+
+var mapStateToProps = function mapStateToProps(_ref) {
+    var admins = _ref.admins;
+    return {
+        admins: admins
+    };
+};
+
+exports.default = {
+    component: (0, _reactRedux.connect)(mapStateToProps, { fetchAdmins: _actions.fetchAdmins })(AdminListPage),
+    loadData: function loadData(_ref2) {
+        var dispatch = _ref2.dispatch;
+        return dispatch((0, _actions.fetchAdmins)());
     }
 };
 

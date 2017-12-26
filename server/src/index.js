@@ -18,16 +18,16 @@ app.use(express.static('public'));
 
 app.get('*',(req,res)=>{
     const store = createStore(req);
-
     const promises = matchRoutes(Routes,req.path).map(({route})=>{
         return route.loadData?route.loadData(store):null;
     });
-
-    Promise.all(promises).then(()=>{ 
+    const render = () => { 
         const context = {};
         const html = renderer(req,store,context);
         res.status(context.statusCode || 200).send(html);
-    }).catch(()=>res.send('Something went wrong'));
+    }
+    // Just render if catch errors.
+    Promise.all(promises).then(render).catch(render);
 })
 
 app.listen(3000, ()=>{

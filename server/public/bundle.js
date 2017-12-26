@@ -39300,21 +39300,26 @@ var UserList = function (_Component) {
             });
         }
     }, {
+        key: 'head',
+        value: function head() {
+            return _react2.default.createElement(
+                _reactHelmet.Helmet,
+                null,
+                _react2.default.createElement(
+                    'title',
+                    null,
+                    'User List Page (' + this.props.users.length + ')'
+                ),
+                _react2.default.createElement('meta', { property: 'og:title', content: 'User List Page (' + this.props.users.length + ')' })
+            );
+        }
+    }, {
         key: 'render',
         value: function render() {
             return _react2.default.createElement(
                 'div',
                 null,
-                _react2.default.createElement(
-                    _reactHelmet.Helmet,
-                    null,
-                    _react2.default.createElement(
-                        'title',
-                        null,
-                        'User List Page'
-                    ),
-                    _react2.default.createElement('meta', { property: 'og:title', content: 'User List Page' })
-                ),
+                this.head(),
                 _react2.default.createElement(
                     'h3',
                     null,

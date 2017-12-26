@@ -27,7 +27,7 @@ app.get('*',(req,res)=>{
         const context = {};
         const html = renderer(req,store,context);
         res.status(context.statusCode || 200).send(html);
-    })
+    }).catch(()=>res.send('Something went wrong'));
 })
 
 app.listen(3000, ()=>{

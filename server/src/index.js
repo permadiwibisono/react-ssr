@@ -23,8 +23,10 @@ app.get('*',(req,res)=>{
         return route.loadData?route.loadData(store):null;
     });
 
-    Promise.all(promises).then(()=>{    
-        res.send(renderer(req,store));
+    Promise.all(promises).then(()=>{ 
+        const context = {};
+        const html = renderer(req,store,context);
+        res.status(context.statusCode || 200).send(html);
     })
 })
 

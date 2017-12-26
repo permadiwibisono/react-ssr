@@ -9,3 +9,14 @@ export const fetchUsers = ()=> async (dispatch, getState, api) =>{
         payload:responses
     })
 }
+
+export const FETCH_CURRENT_USER = 'FETCH_CURRENT_USER';
+
+export const fetchCurrentUser = ()=> async (dispatch, getState, api) =>{
+    const responses = await api.get('/current_user');
+    
+    dispatch({
+        type:FETCH_CURRENT_USER,
+        payload:responses
+    })
+}

@@ -20,14 +20,18 @@ app.get('*',(req,res)=>{
     const store = createStore(req);
     const promises = matchRoutes(Routes,req.path).map(({route})=>{
         return route.loadData?route.loadData(store):null;
-    });
+    })
+    .filter(promise => promise)
+    .map(promise => new Promise((resolve,reject)=>{
+            promise.then(resolve).catch(resolve);
+        })
+    );
     const render = () => { 
         const context = {};
         const html = renderer(req,store,context);
         res.status(context.statusCode || 200).send(html);
     }
-    // Just render if catch errors.
-    Promise.all(promises).then(render).catch(render);
+    Promise.all(promises).then(render);
 })
 
 app.listen(3000, ()=>{

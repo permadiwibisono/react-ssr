@@ -10,14 +10,22 @@ const Header = ({auth})=>{
         <a href="/api/auth/google">Login</a>
     )
     return (
-        <div>
-            <Link to="/">React SSR</Link>
-            <div>
-                <Link to="/users">Users</Link>{' '}
-                <Link to="/admins">Admins</Link>{' '}
-                { authButton }
+        <nav>
+            <div className="nav-wrapper">
+                <Link to="/" className="brand-logo" style={{paddingLeft:15}}>React SSR</Link>
+                <ul className="right">
+                    <li>
+                        <Link to="/users">Users</Link>
+                    </li>
+                    <li>
+                        <Link to="/admins">Admins</Link>
+                    </li>
+                    <li>
+                        { authButton }                    
+                    </li>
+                </ul>
             </div>
-        </div>
+        </nav>
     )
 }
 const mapStateToProps = ({auth})=>({

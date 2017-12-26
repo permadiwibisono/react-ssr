@@ -2,12 +2,11 @@ import React from 'react';
 
 const Home = ()=>{
     return (
-        <div>
-            <div>
-                I'm the BEST HOME Component
-            </div>
-
-            <button onClick={()=>console.log('Hi there!')}>Press me!</button>
+        <div className="center-align" style={{marginTop:200}}>
+            <h3>
+                Welcome
+            </h3>
+            <p>This is server side rendering for react.</p>
         </div>
     )
 }
